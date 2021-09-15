@@ -4,26 +4,40 @@
 
 class Card {
 public:
-	enum class Suit {
-		Spades,
-		Hearts,
-		Diamonds,
-		Clubs
+	enum Suit {
+	Spades,
+	Hearts,
+	Diamonds,
+	Clubs
 	};
+
+	Suit suit;
 	int value;
 	bool visible;
 };
 
 class Pile {
 public:
-	std::vector<Card> pile;	
+	std::vector<Card> cards;	
+	Card newCard;
+	void create_deck(){
+		for (int i = 0; i <= 3; ++i) {
+			for (int j = 1; j <=13; ++j) {
+				newCard.suit = Card::Suit(i); //casting
+				newCard.value = j;
+				cards.push_back(newCard);
+			}
+		}
+	}
+	void shuffle_deck() {
+	}
 };
 
 class Player {
 public:
 	std::string screen_name;
 	int balance;
-	//Pile hand;
+	Pile hand;
 	Player()
 		: screen_name("Unknown"), balance(100) {}
 	void set_screen_name(std::string n) {
@@ -46,9 +60,13 @@ int main() {
 	human.set_screen_name(x);
 	human.greet();
 	human.print_balance();
+	
 	Player cpu;
 	cpu.set_screen_name("CPU");
 	cpu.greet();
 	cpu.print_balance();
+
+	Pile deck;
+	deck.create_deck();
 	return 0;
 }
