@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <random>
+
 
 class Card {
 public:
@@ -21,15 +24,20 @@ public:
 	std::vector<Card> cards;	
 	Card newCard;
 	void create_deck(){
-		for (int i = 0; i <= 3; ++i) {
+		for (int i = 0; i <= 3; ++i)
 			for (int j = 1; j <=13; ++j) {
 				newCard.suit = Card::Suit(i); //casting
 				newCard.value = j;
 				cards.push_back(newCard);
-			}
-		}
+			}	
 	}
-	void shuffle_deck() {
+	void shuffle_pile() {
+		std::shuffle(cards.begin(), cards.end(), std::random_device());
+	}
+	void print_pile() {
+		for (auto i = 0; i < cards.size(); ++i)
+			std::cout << "Suit: " << cards[i].suit 
+			<< " Val: " << cards[i].value << '\n';
 	}
 };
 
@@ -43,11 +51,14 @@ public:
 	void set_screen_name(std::string n) {
 		screen_name = n;
 	}
-	void greet() {	
+	void greet() {
 		std::cout << "Hello " << screen_name << ".\n";
 	}
 	void print_balance() {
 		std::cout << "Your balance is " << balance << ".\n";
+	}
+	void give_card(Card card){
+		hand.cards.push_back(card);
 	}
 };
 
@@ -68,5 +79,12 @@ int main() {
 
 	Pile deck;
 	deck.create_deck();
+	deck.shuffle_pile();
+
+	human.give_card(deck.cards[0]);
+	human.give_card(deck.cards[1]);
+	human.give_card(deck.cards[2]);
+	
+	human.hand.print_pile();
 	return 0;
 }
