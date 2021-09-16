@@ -12,8 +12,5 @@ int main() {
 	Game thisGame;
 	thisGame.new_game();
 
-	Pile deck;
-	deck.create_deck();
-	deck.shuffle_pile();
-	return 0;
+		return 0;
 }

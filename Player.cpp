@@ -6,7 +6,7 @@
 #include "Player.h"
 
 Player::Player()
-	: screen_name("Unknown"), balance(100), is_human(0) {}
+	: screen_name("Unknown"), balance(100), is_human(false), hit(true) {}
 
 void Player::set_screen_name(std::string n) {
 	screen_name = n;

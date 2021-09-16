@@ -19,6 +19,7 @@ void Game::new_game() {
 		std::cout << "Name of human player " << j+1 << "\n> ";
 		std::cin >> screen_name; 
 		players.push_back(newPlayer);
+		players[j].is_human = true;
 		players[j].set_screen_name(screen_name);
 		players[j].greet();
 		players[j].print_balance();
@@ -35,4 +36,17 @@ void Game::new_game() {
 		players[j].greet();
 		players[j].print_balance();
 	}
+	deck.create_deck();
+	deck.shuffle_pile();
 }
+
+void Game::deal() {
+	for (int i = 0; i < players.size(); ++i) {
+		if (players[i].hit) {
+			players[i].give_card(deck.cards.back());
+			deck.cards.pop_back();	
+		}
+	}
+}
+
+

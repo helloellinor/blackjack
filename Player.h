@@ -7,6 +7,7 @@ public:
 	int balance;
 	Pile hand;
 	bool is_human;
+	bool hit;
 	Player();
 	void set_screen_name(std::string n);
 	void greet();
