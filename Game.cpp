@@ -8,45 +8,48 @@
 #include "Player.h"
 #include "Game.h"
 
+bool Game::yes_or_no() {
+	std::cout << "(y/n)\n> ";
+	char x;
+	std::cin >> x;
+	switch(x) {
+		case 'y':
+			return true;
+		case 'n':
+			return false;
+		default:
+			return false; //should have typed 'y'
+	}
+}
+
 void Game::new_game() {
-	std::cout << "Welcome to Blackjack.\n" <<
-	"How many human players?\n> ";	
-	int human_players;
-	std::cin >> human_players;
-	std::string screen_name;
-	Player newPlayer;
-	for (int j = 0; j < human_players; ++j) {
-		std::cout << "Name of human player " << j+1 << "\n> ";
-		std::cin >> screen_name; 
-		players.push_back(newPlayer);
-		players[j].is_human = true;
-		players[j].set_screen_name(screen_name);
-		players[j].greet();
-		players[j].print_balance();
+	
+}
+
+void Game::add_player() {
+	std::cout << "Add new player? ";
+	if (yes_or_no()) {
+		Player new_player;
+		std::cout << "Human? ";
+		if (yes_or_no()) {
+			std::cout << "Screen name?\n> ";
+			std::string x;
+			std::cin >> x;
+			new_player.screen_name = x;
+		}
+		else {
+			std::string cpu = "CPU";
+			new_player.screen_name = 
+				cpu.append(std::to_string(players.size())); 
+		}
+		new_player.greet();
+		players.push_back(new_player);
+		add_player();
 	}
-	std::cout << "How many CPUs?\n> ";
-	int total_players;
-	std::cin >> total_players;
-	total_players += human_players;
-	for (int j = human_players; j < total_players; ++j) {
-		std::string cpu = "CPU";
-		players.push_back(newPlayer);
-		players[j].set_screen_name(
-		cpu.append(std::to_string(j-human_players+1)));
-		players[j].greet();
-		players[j].print_balance();
-	}
-	deck.create_deck();
-	deck.shuffle_pile();
 }
 
 void Game::deal() {
-	for (int i = 0; i < players.size(); ++i) {
-		if (players[i].hit) {
-			players[i].give_card(deck.cards.back());
-			deck.cards.pop_back();	
-		}
-	}
 }
 
-
+void Game::round() {
+}

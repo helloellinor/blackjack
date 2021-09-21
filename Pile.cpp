@@ -19,8 +19,8 @@ void Pile::shuffle_pile() {
 }
 	
 void Pile::print_pile(bool show_all) {
+	std::cout << "Your hand: ";
 	for (auto i = 0; i < cards.size(); ++i) {
-		std::cout << "Your hand: ";
 		if (cards[i].visible || show_all) { 
 			if (cards[i].value <= 10)
 				std::cout << cards[i].value;
@@ -61,4 +61,5 @@ void Pile::print_pile(bool show_all) {
 		if (i + 1 != cards.size())
 			std::cout << ", ";
 	}
+	std::cout << '\n';
 }

@@ -9,8 +9,7 @@
 #include "Game.h"
 
 int main() {
-	Game thisGame;
-	thisGame.new_game();
-
-		return 0;
+	Game this_game;
+	this_game.add_player();
+	return 0;
 }
