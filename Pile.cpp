@@ -5,60 +5,23 @@
 #include "Card.h"
 #include "Pile.h"
 
-void Pile::create_deck(){
+void Pile::create_deck() {
 	for (int i = 0; i <= 3; ++i)
 		for (int j = 1; j <=13; ++j) {
-			newCard.suit = Card::Suit(i); //casting
-			newCard.value = j;
-			cards.push_back(newCard);
+			Card new_card(Card::Suit(i), j); //casting, j
+			contents.push_back(new_card);
 		}	
 }
 	
 void Pile::shuffle_pile() {
-	std::shuffle(cards.begin(), cards.end(), std::random_device());
+	std::shuffle(contents.begin(), contents.end(), std::random_device());
 }
 	
-void Pile::print_pile(bool show_all) {
+void Pile::print_pile(bool reveal) {
 	std::cout << "Your hand: ";
-	for (auto i = 0; i < cards.size(); ++i) {
-		if (cards[i].visible || show_all) { 
-			if (cards[i].value <= 10)
-				std::cout << cards[i].value;
-			else {
-				switch (cards[i].value) {
-					case 11:
-						std::cout << 'J';
-						break;
-					case 12:
-						std::cout << 'Q';
-						break;
-					case 13:
-						std::cout << 'K';
-						break;
-					case 14:
-						std::cout << 'A';
-						break;
-				}
-			}
-			switch (cards[i].suit) {
-				case 0:
-					std::cout << 'S';
-					break;
-				case 1:
-					std::cout << 'H';
-					break;
-				case 2:
-					std::cout << 'C';
-					break;
-				case 3:
-					std::cout << 'D';
-					break;
-				
-			}
-		}
-		else
-			std::cout << "??";
-		if (i + 1 != cards.size())
+	for (int i = 0; i < contents.size(); ++i) {
+		contents[i].print_card(reveal);
+		if (i + 1 != contents.size())
 			std::cout << ", ";
 	}
 	std::cout << '\n';

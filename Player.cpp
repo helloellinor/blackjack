@@ -9,7 +9,6 @@ Player::Player() {
 	screen_name = "Unknown";
 	balance = 100;
 	is_human = false; 
-	hand.total_value = 0;
 }
 
 void Player::greet() {
@@ -21,6 +20,5 @@ void Player::print_balance() {
 }
 
 void Player::give_card(Card card) {
-	hand.cards.push_back(card);
-	hand.total_value += card.value;
+	hand.contents.push_back(card);
 }

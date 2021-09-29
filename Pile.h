@@ -3,12 +3,10 @@
 
 class Pile {
 public:
-	std::vector<Card> cards;	
-	Card newCard;
-	int total_value;
+	std::vector<Card> contents;	
 	void create_deck();
 	void shuffle_pile();
-	void print_pile(bool show_all);
+	void print_pile(bool reveal);
 };
 
 #endif //PILE_H

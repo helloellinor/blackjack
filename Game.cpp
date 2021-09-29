@@ -18,12 +18,10 @@ bool Game::yes_or_no() {
 		case 'n':
 			return false;
 		default:
-			return false; //should have typed 'y'
+			std::cout << 
+				"Why'd you have to do me dirty like that, buddypal?\n";
+			return false;
 	}
-}
-
-void Game::new_game() {
-	
 }
 
 void Game::add_player() {
@@ -48,8 +46,20 @@ void Game::add_player() {
 	}
 }
 
-void Game::deal() {
+void discard() {
+	
 }
 
+void Game::deal(int index, int quantity) {
+	for (int i = 0; i < quantity; ++i) {
+		players[index].give_card(deck.contents.back());
+		deck.contents.pop_back();	
+	}
+}
+
+bool check_win(Pile& hand) {
+ return true;
+}
 void Game::round() {
+	
 }

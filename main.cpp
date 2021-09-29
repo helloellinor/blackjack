@@ -9,7 +9,8 @@
 #include "Game.h"
 
 int main() {
-	Game this_game;
-	this_game.add_player();
+	Game game;
+	game.deck.create_deck();
+	game.deck.print_pile(true);	
 	return 0;
 }
