@@ -1,2 +1,2 @@
 # blackjack
-commandline blackjack
+Commandline blackjack: win big!
